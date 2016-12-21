@@ -43,12 +43,12 @@ public class WordCount {
 		    SparkConf conf = new SparkConf().setAppName("org.sparkexample.WordCount").setMaster("local");
 		    JavaSparkContext context = new JavaSparkContext(conf);
 
-		    JavaRDD<String> file = context.textFile("/Users/user/Documents/PersonalPOCs/SparkSampleProject/src/test/resources/TopPhrases.txt");
+		    JavaRDD<String> file = context.textFile("/Users/user/Documents/PersonalPOCs/SparkProjects1/src/test/resources/TopPhrases.txt");
 		    JavaRDD<String> words = file.flatMap(WORDS_EXTRACTOR);
 		    JavaPairRDD<String, Integer> pairs = words.mapToPair(WORDS_MAPPER);
 		    JavaPairRDD<String, Integer> counter = pairs.reduceByKey(WORDS_REDUCER);
 
 		    
-		    counter.saveAsTextFile("/Users/user/Documents/PersonalPOCs/SparkSampleProject/src/test/resources/SparkTopPrases.txt");
+		    counter.saveAsTextFile("/Users/user/Documents/PersonalPOCs/SparkProjects1/src/test/resources/SparkTopPrases.txt");
 		  }
 }
